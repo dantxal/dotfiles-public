@@ -89,31 +89,31 @@ yabai -m config window_topmost off
 ###############################################################################
 
 yabai -m config \
-	focus_follows_mouse off \
-	window_origin_display default \
-	window_placement second_child \
-	window_zoom_persist on \
-	window_shadow off \
-	window_animation_duration 2 \
-	window_animation_frame_rate 120 \
-	window_opacity_duration 0.0 \
-	insert_feedback_color 0xffd75f5f \
-	active_window_border_color 0xff775759 \
-	normal_window_border_color 0xff555555 \
-	window_border_width 4 \
-	window_border_radius 12 \
-	window_border_blur off \
-	window_border_hidpi on \
-	window_border off \
-	split_ratio 0.50 \
-	split_type auto \
-	auto_balance off \
-	window_gap 06 \
-	layout stack \
-	mouse_modifier fn \
-	mouse_action1 move \
-	mouse_action2 resize \
-	mouse_drop_action swap
+  focus_follows_mouse off \
+  window_origin_display default \
+  window_placement second_child \
+  window_zoom_persist on \
+  window_shadow off \
+  window_animation_duration 2 \
+  window_animation_frame_rate 120 \
+  window_opacity_duration 0.0 \
+  insert_feedback_color 0xffd75f5f \
+  active_window_border_color 0xff775759 \
+  normal_window_border_color 0xff555555 \
+  window_border_width 4 \
+  window_border_radius 12 \
+  window_border_blur off \
+  window_border_hidpi on \
+  window_border off \
+  split_ratio 0.50 \
+  split_type auto \
+  auto_balance off \
+  window_gap 06 \
+  layout stack \
+  mouse_modifier fn \
+  mouse_action1 move \
+  mouse_action2 resize \
+  mouse_drop_action swap
 
 ###############################################################################
 #                              Signal events
@@ -138,15 +138,16 @@ yabai -m config \
 # # If the resolution is 6016 x 3384 I want to apply bigger paddings
 # # This means I'm connected to my 55 inch tv
 # # The * are used as wildcards
-# if [[ "$display_info" == *"6016 x 3384"* ]]; then
-# 	yabai -m config top_padding 400
-# 	yabai -m config bottom_padding 300
-# 	yabai -m config left_padding 1500
-# 	yabai -m config right_padding 12
+yabai -m config external_bar all:26:0
+# if [[ "$display_info" == *"1800 x 1169"* ]]; then
+#   yabai -m config top_padding -30
+# # 	yabai -m config bottom_padding 300
+# # 	yabai -m config left_padding 1500
+# # 	yabai -m config right_padding 12
 # else
-# 	# settings for other machines
-# 	yabai -m config top_padding 0
-# 	yabai -m config bottom_padding 0
-# 	yabai -m config left_padding 0
-# 	yabai -m config right_padding 0
+#   # settings for other machines
+#   yabai -m config top_padding 28
+# # yabai -m config bottom_padding 0
+# # yabai -m config left_padding 0
+# # yabai -m config right_padding 0
 # fi
