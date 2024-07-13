@@ -3,14 +3,14 @@ import { KarabinerRules } from "./types";
 import { createHyperSubLayers, app, open } from "./utils";
 
 const rules: KarabinerRules[] = [
-  // Define the Hyper key itself
   {
     description: "Hyper Key (⌃⌥⇧⌘)",
     manipulators: [
       {
-        description: "Caps Lock -> Hyper Key",
+        type: "basic",
+        description: "Right Command -> Hyper Key",
         from: {
-          key_code: "caps_lock",
+          key_code: "right_command",
         },
         to: [
           {
@@ -18,31 +18,26 @@ const rules: KarabinerRules[] = [
             modifiers: ["left_command", "left_control", "left_option"],
           },
         ],
-        to_if_alone: [
-          {
-            key_code: "escape",
-          },
-        ],
-        type: "basic",
       },
-      //      {
-      //        type: "basic",
-      //        description: "Disable CMD + Tab to force Hyper Key usage",
-      //        from: {
-      //          key_code: "tab",
-      //          modifiers: {
-      //            mandatory: ["left_command"],
-      //          },
-      //        },
-      //        to: [
-      //          {
-      //            key_code: "tab",
-      //          },
-      //        ],
-      //      },
     ],
   },
-
+  {
+    description: "Command E => Command Alt E",
+    manipulators: [
+      {
+        type: "basic",
+        description: "Command E => Command Alt E",
+        from: {
+          key_code: "caps_lock",
+        },
+        to: [
+          {
+            key_code: "left_control",
+          },
+        ],
+      },
+    ],
+  },
   // I couldn't get this work with the magic mouse because it only detects button1 in the karabiner event viewer
   // You need to enable pro mode in karabiner for the work with the apple mouse
   // It works with the logitech mouse tough
@@ -79,9 +74,9 @@ const rules: KarabinerRules[] = [
   ...createHyperSubLayers({
     // I use spacebar as the app launcher
     spacebar: {
-      h: app("Spotify"),
+      h: app("Youtube Music"),
       j: app("Alacritty"),
-      k: app("Safari"),
+      k: app("Google Chrome"),
       l: app("Obsidian"),
       semicolon: app("ChatGPT"),
       quote: app("System Settings"),
@@ -89,22 +84,9 @@ const rules: KarabinerRules[] = [
       u: app("WhatsApp Web"),
       i: app("Slack"),
       o: app("Preview"),
-      p: app("Brave Browser"),
-      open_bracket: app("Reminders"),
-      n: app("Visual Studio Code"),
-      a: app("Mail"),
-      s: app("Udemy Business"),
-      d: app("Dashlane"),
       f: app("Finder"),
-      g: app("Udemy"),
-      q: app("Setapp"),
-      w: app("Microsoft Word"),
-      e: app("Microsoft Excel"),
-      r: app("Microsoft Remote Desktop"),
-      t: app("DaVinci Resolve"),
+      // t: app("DaVinci Resolve"),
       x: app("GoTo"),
-      c: app("Microsoft Outlook"),
-      v: app("zoom.us"),
     },
 
     // r = "Raycast"
@@ -123,20 +105,8 @@ const rules: KarabinerRules[] = [
 
     // s = "System"
     s: {
-      j: {
-        to: [
-          {
-            key_code: "volume_decrement",
-          },
-        ],
-      },
-      k: {
-        to: [
-          {
-            key_code: "volume_increment",
-          },
-        ],
-      },
+      j: { to: [{ key_code: "volume_decrement" }] },
+      k: { to: [{ key_code: "volume_increment" }] },
       // Move to left tab in browsers
       h: {
         to: [
@@ -155,43 +125,13 @@ const rules: KarabinerRules[] = [
           },
         ],
       },
-      u: {
-        to: [
-          {
-            key_code: "display_brightness_decrement",
-          },
-        ],
-      },
-      i: {
-        to: [
-          {
-            key_code: "display_brightness_increment",
-          },
-        ],
-      },
+      u: { to: [{ key_code: "display_brightness_decrement" }] },
+      i: { to: [{ key_code: "display_brightness_increment" }] },
       // Previous song
-      y: {
-        to: [
-          {
-            key_code: "rewind",
-          },
-        ],
-      },
+      y: { to: [{ key_code: "rewind" }] },
       // Next song
-      o: {
-        to: [
-          {
-            key_code: "fastforward",
-          },
-        ],
-      },
-      p: {
-        to: [
-          {
-            key_code: "play_or_pause",
-          },
-        ],
-      },
+      o: { to: [{ key_code: "fastforward" }] },
+      p: { to: [{ key_code: "play_or_pause" }] },
       // Lock screen
       d: {
         to: [
@@ -315,28 +255,28 @@ const rules: KarabinerRules[] = [
     },
 
     // copy, paste and other stuff
-    right_command: {
-      // I use this for fzf
-      r: {
-        to: [{ key_code: "r", modifiers: ["left_control"] }],
-      },
-      // Slack go to all unreads
-      a: {
-        to: [{ key_code: "a", modifiers: ["left_command", "left_shift"] }],
-      },
-      h: {
-        to: [{ key_code: "delete_or_backspace" }],
-      },
-      l: {
-        to: [{ key_code: "delete_forward" }],
-      },
-      // Switch between windows of same app, normally cmd+~
-      spacebar: {
-        to: [
-          { key_code: "grave_accent_and_tilde", modifiers: ["left_command"] },
-        ],
-      },
-    },
+    //    right_command: {
+    //      // I use this for fzf
+    //      r: {
+    //        to: [{ key_code: "r", modifiers: ["left_control"] }],
+    //      },
+    //      // Slack go to all unreads
+    //      a: {
+    //        to: [{ key_code: "a", modifiers: ["left_command", "left_shift"] }],
+    //      },
+    //      h: {
+    //        to: [{ key_code: "delete_or_backspace" }],
+    //      },
+    //      l: {
+    //        to: [{ key_code: "delete_forward" }],
+    //      },
+    //      // Switch between windows of same app, normally cmd+~
+    //      spacebar: {
+    //        to: [
+    //          { key_code: "grave_accent_and_tilde", modifiers: ["left_command"] },
+    //        ],
+    //      },
+    //    },
 
     // 'e' for extra tools
     e: {
@@ -383,6 +323,7 @@ const rules: KarabinerRules[] = [
   }),
 ];
 
+// For reference: https://karabiner-elements.pqrs.org/docs/json/root-data-structure/
 fs.writeFileSync(
   "karabiner.json",
   JSON.stringify(
@@ -393,6 +334,25 @@ fs.writeFileSync(
       profiles: [
         {
           name: "Default",
+          simple_modifications: [
+            {
+              description: "Replace Caps-lock with Control (^)",
+              manipulators: [
+                {
+                  type: "basic",
+                  description: "Caps lock -> Control",
+                  from: {
+                    key_code: "caps_lock",
+                  },
+                  to: [
+                    {
+                      key_code: "left_control",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
           complex_modifications: {
             rules,
           },
