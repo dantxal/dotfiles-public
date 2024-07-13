@@ -1,0 +1,95 @@
+# from Kent C Dodds https://github.com/kentcdodds/dotfiles/blob/main/.zshrc
+killport() { lsof -i tcp:"$*" | awk 'NR!=1 {print $2}' | xargs kill -9 ;}
+
+alias dst="cd ~/Library/Application\ Support/Steam/steamapps/common/Don\'t\ Starve\ Together"
+alias trade="vi ~/trade.txt"
+alias aliaz="vi ~/myAlias"
+alias viz="vi ~/.zshrc"
+alias tmuz="vi ~/.tmux.conf"
+alias vichad2="vi ~/.config/chad2"
+
+alias skbarz="vi ~/.config/sketchybar/sketchybarrc"
+alias skbarr="brew services restart sketchybar"
+
+alias yabaiz="vi ~/.yabairc"
+alias yabair="yabai --restart-service"
+
+alias skhdz="vi ~/.skhdrc"
+alias skhdr="brew services restart skhd"
+
+# CUSTOM
+alias pn=pnpm
+alias nt="vi ~/notes.txt"
+alias jobs="vi ~/job-applications.txt"
+alias questions="vi ~/questions.txt"
+
+# Use neovim
+alias chad2='NVIM_APPNAME="chad2" nvim'
+alias vi='nvim'
+alias vim='nvim'
+alias oldvim="\vim"
+
+# Source Reload
+alias nvimrc="vi ~/.config/nvim/"
+alias nanoz="nano ~/.zshrc"
+alias alvim="vi ~/myAlias"
+alias zload="source ~/.zshrc --verbose"
+alias reload.profile="source ~/.bash_profile"
+alias reload.term="source ~/.bash_profile && source ~/.zshrc"
+
+# ls --- REQUIRES EXA (sudo apt install cargo && cargo install exa)
+# alias ls=" exa -al --color=always --group-directories-first"
+
+
+# cd
+alias ..="cd .."
+alias -g G="| grep"
+alias -g L="| less"
+alias -g GG="google.com"
+alias codesm="code ~/.local/share/gnome-shell/extensions/system-monitor@paradoxxx.zero.gmail.com/extension.js"
+
+# GIT
+alias grhs="git reset --soft"
+alias gai="git add -i"
+alias gcao="git checkout --ours -- "
+alias gcat="git checkout --theirs -- "
+alias gmn="git merge --no-ff "
+
+# alias grc="git commit -eF $(git rev-parse --git-dir)/COMMIT_EDITMSG"
+
+alias glgl="git for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)  %(color:red)%(authorname)  %(color:white)%(color:bold)%(refname:short)\" refs/remotes"
+alias glg1="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+alias glgg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'" # -all to show stash files
+
+# git stash
+alias gsl="git stash list"
+alias gsls="git stash list --stat"
+alias gnsl="git --no-pager stash list" # print list to screen
+alias gsll="git stash list -p"
+alias gss="git stash save -u" # include untracked
+alias gsS="git stash save -S" # only staged changes
+alias gsp="git stash pop"
+alias gsa="git stash apply"
+alias gsd="git stash drop"
+alias gsad="applyAndDrop"
+
+applyAndDrop() {
+  gsa $1 && gsd $1
+}
+
+#snapboard
+alias tos="cd ~/projects/snapreport"
+alias slp="tos && gcm && gl && yarn lerna publish && glm"
+alias smsd="cd ~/projects/snapreport/migrate && yarn migrate:dev scripts/schema.js && tos"
+
+# TURBO COOLING ALIAS
+alias turbo="sudo service fancontrol stop"
+alias turbod="sudo service fancontrol start"
+
+# Set large text on gnome
+alias sltxt="gsettings set org.gnome.desktop.interface text-scaling-factor 1"
+alias ltxt="gsettings set org.gnome.desktop.interface text-scaling-factor 1.15"
+# Backups every pkg to .list file
+alias danbk="dpkg --get-selections > ~/Package.list && sudo cp -R /etc/apt/sources.list* ~/ && sudo apt-key exportall > ~/Repo.keys"
+# reinstalls every pkg from the ~/Package.list file using ~/Repo.keys
+alias danbkr="sudo apt-key add ~/Repo.keys && sudo cp -R ~/sources.list* /etc/apt/ && sudo apt-get update && sudo apt-get install dselect &&	sudo dselect update && sudo dpkg --set-selections < ~/Package.list && sudo apt-get dselect-upgrade -y"
