@@ -1,0 +1,27 @@
+{
+  "gruvbox.nvim": {
+    "branch": "main",
+    "commit": "7a1b23e4edf73a39642e77508ee6b9cbb8c60f9e"
+  },
+  "lazy.nvim": {
+    "branch": "main",
+    "commit": "1d451b4c2ce957da05e2123ce1a001804fc7ea96"
+  },
+  "lualine.nvim": {
+    "branch": "master",
+    "commit": "6a40b530539d2209f7dc0492f3681c8c126647ad"
+  },
+  "nvim-osc52": {
+    "branch": "main",
+    "commit": "04cfaba1865ae5c53b6f887c3ca7304973824fb2"
+  },
+  "stay-centered.nvim": {
+    "branch": "main",
+    "commit": "91113bd82ac34f25c53d53e7c1545cb5c022ade8"
+  },
+  "vim-syntax-bind-named": {
+    "branch": "master",
+    "commit": "16bccff184f140cf35b4cc4344637aea1a491262"
+  }
+}
+
