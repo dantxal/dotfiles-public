@@ -20,6 +20,7 @@ return {
       styles = {
         sidebars = transparent and "transparent" or "dark",
         floats = transparent and "transparent" or "dark",
+        comments = { fg = "#73a4c8" },
       },
       on_colors = function(colors)
         colors.bg = bg
