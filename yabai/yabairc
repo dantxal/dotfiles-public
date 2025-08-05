@@ -11,143 +11,42 @@
 # This command is the one that loads the scripting addition
 # Configure your user to execute `yabai --load-sa` as the root user without having to enter a password.
 #  https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
-yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-sudo yabai --load-sa
 
-###############################################################################
-#                                 Paddings
-###############################################################################
+# default layout (can be bsp, stack or float)
+yabai -m config layout bsp
 
-# yabai -m config top_padding 25
-# yabai -m config bottom_padding 05
-# yabai -m config left_padding 180
-# yabai -m config right_padding 05
+# new window spawns to the right if vertical split, or bottom if horizontal split
+yabai -m config window_placement second_child
 
-###############################################################################
-#                               Transparency
-###############################################################################
+## Status bar
+yabai -m config --dispaly 0 external_bar all:12:0
+yabai -m config --dispaly 1 external_bar all:24:0
 
-yabai -m config window_opacity on
+# padding set to 12px
+ # yabai -m config top_padding 24
+# yabai -m config bottom_padding 12
+# yabai -m config left_padding 12
+# yabai -m config right_padding 12
+# yabai -m config window_gap 12
 
-# Make the below apps transparent
-apps_transparent="(Spotify|Alacritty)"
-yabai -m signal --add event=window_focused app="^${apps_transparent}$" action="yabai -m config active_window_opacity 0.85"
-yabai -m signal --add event=window_focused app="^${apps_transparent}$" action="yabai -m config normal_window_opacity 0.00001"
+# -- mouse settings --
 
-# When any other app gains focus, reset both active and background window opacity to fully visible
-yabai -m signal --add event=window_focused app!="^${apps_transparent}$" action="yabai -m config active_window_opacity 1.0"
-yabai -m signal --add event=window_focused app!="^${apps_transparent}$" action="yabai -m config normal_window_opacity 1.0"
+# center mouse on window with focus
+# yabai -m config mouse_follows_focus on
 
-###############################################################################
-#                             layer=normal
-###############################################################################
+# modifier for clicking and dragging with mouse
+yabai -m config mouse_modifier alt
+# set modifier + left-click drag to move window
+yabai -m config mouse_action1 move
+# set modifier + right-click drag to resize window
+yabai -m config mouse_action2 resize
 
-# https://github.com/koekeishiya/yabai/issues/1929
+# when window is dropped in center of another window, swap them (on edges it will split it)
+yabai -m mouse_drop_action swap
 
-# Set all apps to the "normal" layer, otherwise they all start on the "below"
-# layer. Doing this fixed the issue I had with floating windows with OBS,
-# davinci resolve and other apps where their floating windows would show on top
-# of other apps
 
-yabai -m rule --add app=".*" layer=normal
-
-###############################################################################
-#                              Excluded apps
-###############################################################################
-
-# Apps excluded from window management, so you can resize them and move them around
-
-apps_mgoff_normal="(Calculator|iStat Menus|Hammerspoon|BetterDisplay|GIMP|Notes|System Preferences|System Settings|Activity Monitor|App StoreSoftware Update|CleanShot X)"
-# This keeps apps always below
-apps_mgoff_below="()"
-# This keeps apps always on the top
-apps_mgoff_above="()"
-yabai -m rule --add app="^${apps_mgoff_normal}$" manage=off layer=normal
-yabai -m rule --add app="^${apps_mgoff_below}$" manage=off layer=below
-yabai -m rule --add app="^${apps_mgoff_above}$" manage=off layer=above
-
-# In case you want to debug and see the contents of a variable
-# echo "apps_mgoff_below: $apps_mgoff_below" >> /tmp/yabai_debug.log
-
-###############################################################################
-#                                  Misc
-###############################################################################
-
-# global settings
-# When I leave youtube or chrome, hammerspoon will move the mouse to the corner
-
-# "mouse_follows_focus on" will move the mouse back to the center, but DISABLE it or it will
-# be a nightmare to use iStat Menus
-yabai -m config mouse_follows_focus off
-
-# I don't understand what this does, I've enabled and disabled it in the past,
-# and still don't get it
-yabai -m config window_topmost off
-
-###############################################################################
-#                                Defaults
-###############################################################################
-
-yabai -m config \
-  focus_follows_mouse off \
-  window_origin_display default \
-  window_placement second_child \
-  window_zoom_persist on \
-  window_shadow off \
-  window_animation_duration 2 \
-  window_animation_frame_rate 120 \
-  window_opacity_duration 0.0 \
-  insert_feedback_color 0xffd75f5f \
-  active_window_border_color 0xff775759 \
-  normal_window_border_color 0xff555555 \
-  window_border_width 4 \
-  window_border_radius 12 \
-  window_border_blur off \
-  window_border_hidpi on \
-  window_border off \
-  split_ratio 0.50 \
-  split_type auto \
-  auto_balance off \
-  window_gap 06 \
-  layout stack \
-  mouse_modifier fn \
-  mouse_action1 move \
-  mouse_action2 resize \
-  mouse_drop_action swap
-
-###############################################################################
-#                              Signal events
-###############################################################################
-
-# Adds a signal that, when a window gains focus, triggers a custom action in SketchyBar
-# (presumably to update the status bar based on the focused window).
-# https://github.com/FelixKratz/dotfiles
-# yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
-
-# Yabai signal to detect focus change for any application and move the cursor
-# yabai -m signal --add event=window_focused action="cliclick m:0,0"
-# yabai -m signal --add event=window_focused app="Google Chrome" action="cliclick m:0,0"
-
-###############################################################################
-#                       Custom resolution settings
-###############################################################################
-
-# # Check the display size (e.g., grab the resolution here)
-# display_info=$(system_profiler SPDisplaysDataType | grep Resolution)
-#
-# # If the resolution is 6016 x 3384 I want to apply bigger paddings
-# # This means I'm connected to my 55 inch tv
-# # The * are used as wildcards
-yabai -m config external_bar all:26:0
-# if [[ "$display_info" == *"1800 x 1169"* ]]; then
-#   yabai -m config top_padding -30
-# # 	yabai -m config bottom_padding 300
-# # 	yabai -m config left_padding 1500
-# # 	yabai -m config right_padding 12
-# else
-#   # settings for other machines
-#   yabai -m config top_padding 28
-# # yabai -m config bottom_padding 0
-# # yabai -m config left_padding 0
-# # yabai -m config right_padding 0
-# fi
+# disable specific apps
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Karabiner-Elements$" manage=off
+yabai -m rule --add app="^QuickTime Player$" manage=off
