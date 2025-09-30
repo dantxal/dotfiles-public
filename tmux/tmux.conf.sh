@@ -224,6 +224,8 @@ set -g @dracula-border-contrast true
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 # allow tmux-ressurect to capture pane contents
 set -g @resurrect-capture-pane-contents 'on'
+# log successful save on save session
+set -g @resurrect-hook-post-save-all 'echo "Saved successfully!"'
 # automatically saves sessions for you every 15 minutes (this must be the last plugin)
 set -g @plugin 'tmux-plugins/tmux-continuum'
 # enable tmux-continuum functionality
