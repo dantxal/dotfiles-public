@@ -1,6 +1,9 @@
 # from Kent C Dodds https://github.com/kentcdodds/dotfiles/blob/main/.zshrc
 killport() { lsof -i tcp:"$*" | awk 'NR!=1 {print $2}' | xargs kill -9 ;}
 
+alias zl="source ~/.zshrc"
+alias zload="source ~/.zshrc --verbose"
+alias lg="lazygit"
 alias dst="cd ~/Library/Application\ Support/Steam/steamapps/common/Don\'t\ Starve\ Together"
 alias trade="vi ~/trade.txt"
 alias aliaz="vi ~/myAlias"
@@ -30,16 +33,8 @@ alias vim='nvim'
 alias oldvim="\vim"
 
 # Source Reload
-alias nvimrc="vi ~/.config/nvim/"
-alias nanoz="nano ~/.zshrc"
-alias alvim="vi ~/myAlias"
-alias zload="source ~/.zshrc --verbose"
 alias reload.profile="source ~/.bash_profile"
 alias reload.term="source ~/.bash_profile && source ~/.zshrc"
-
-# ls --- REQUIRES EXA (sudo apt install cargo && cargo install exa)
-# alias ls=" exa -al --color=always --group-directories-first"
-
 
 # cd
 alias ..="cd .."
