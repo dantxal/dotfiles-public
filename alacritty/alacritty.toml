@@ -5,7 +5,7 @@
 # #############################################################################
 
 # import = ["~/github/dotfiles-public/alacritty/themes/dracula/dracula.toml"]
-import = ["~/github/dotfiles-public/alacritty/themes/catppuccin/catppuccin-mocha.toml"]
+general.import = ["~/github/dotfiles-public/alacritty/themes/catppuccin/catppuccin-mocha.toml"]
 # import = ["~/github/dotfiles-public/alacritty/themes/catppuccin/catppuccin-macchiato.toml"]
 # import = ["~/github/dotfiles-public/alacritty/themes/catppuccin/catppuccin-frappe.toml"]
 # import = ["~/github/dotfiles-public/alacritty/themes/catppuccin/catppuccin-latte.toml"]
@@ -76,7 +76,7 @@ multiplier = 3
 #  program: /bin/bash
 #  args:
 #    - --login
-[shell]
+[terminal.shell]
 program = "/bin/zsh"
 # The 2 commands after login are needed to automatically attach to an existing tmux session
 # If no session exists, a new one is created
