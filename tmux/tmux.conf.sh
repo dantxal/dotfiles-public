@@ -149,7 +149,8 @@ set -g mouse on
 
 # I had to set this to on for osc52 to work
 # https://github.com/ojroques/nvim-osc52
-set -s set-clipboard on
+# Not needed since Neovim 10 aready supports OSC52 natively
+# set -s set-clipboard on
 
 # don't exit copy mode when dragging with mouse
 unbind -T copy-mode-vi MouseDragEnd1Pane
