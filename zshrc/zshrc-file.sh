@@ -102,3 +102,8 @@ fi
 # Version control for UE5
 export PATH="$HOME/.diversion/bin:$PATH"
 export PATH=/opt/homebrew/bin:/Users/dantxal/.diversion/bin:/Users/dantxal/.diversion/bin:/Users/dantxal/.diversion/bin:/Users/dantxal/.cargo/bin:/Users/dantxal/.nix-profile/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin:/opt/homebrew/opt/fzf/bin
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
