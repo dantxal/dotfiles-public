@@ -98,3 +98,7 @@
 fi
 
 . /opt/homebrew/etc/profile.d/z.sh
+
+# Version control for UE5
+export PATH="$HOME/.diversion/bin:$PATH"
+export PATH=/opt/homebrew/bin:/Users/dantxal/.diversion/bin:/Users/dantxal/.diversion/bin:/Users/dantxal/.diversion/bin:/Users/dantxal/.cargo/bin:/Users/dantxal/.nix-profile/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin:/opt/homebrew/opt/fzf/bin
